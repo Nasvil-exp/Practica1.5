@@ -18,18 +18,9 @@ source .env
 : "${LETS_ENCRYPT_DOMAIN:?Asigne un valor a LETS_ENCRYPT_DOMAIN en .env}"
 : "${LETS_ENCRYPT_EMAIL:?Asigne un valor a LETS_ENCRYPT_EMAIL en .env}"
 
-# Realizamos la instalación y actualización de snapd
-snap install core
-snap refresh core
-
-# Eliminamos si existiese alguna instalación previa de certbot con apt
-apt remove certbot -y
-
-# Instalamos el cliente de Certbot con snapd
-snap install --classic certbot
-
-# Creamos una alias para el comando certbot
-ln -fs /snap/bin/certbot /usr/bin/certbot
+# Instalamos Certbot y su integración con Apache
+apt update
+apt install -y certbot python3-certbot-apache
 
 # Deshabilitamos los virtual hosts por defecto de Apache
 a2dissite 000-default.conf

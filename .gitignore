@@ -1,0 +1,10 @@
+# Archivos de configuración privados
+.env
+scripts/.env
+
+# Claves privadas y certificados
+*.pem
+*.key
+
+# Copias de seguridad
+*.bak
